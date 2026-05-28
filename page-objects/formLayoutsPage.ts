@@ -1,10 +1,9 @@
 import { Page } from "@playwright/test";
+import { HelperBase } from "./helperBase";
 
-export class FormLayoutsPage {
-    private readonly page: Page
-
-    constructor(page: Page) {
-        this.page = page
+export class FormLayoutsPage extends HelperBase{
+     constructor(page: Page) {
+        super(page)
     }
 
     async submitUsingTheGridFormWithCredentialsAndSelectOption(email: string, password: string, optionText: string) {
@@ -13,6 +12,7 @@ export class FormLayoutsPage {
         await usingTheGridForm.getByRole('textbox', { name: "Password" }).fill(password)
         await usingTheGridForm.getByRole('radio', { name: optionText }).check({ force: true })
         await usingTheGridForm.getByRole('button').click()
+
     }
 }
 
